@@ -1,0 +1,26 @@
+{
+  "name": "interview",
+  "version": "1.0.0",
+  "description": "login + sign up + user location + user profile + match the users with same location",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev":"nodemon server/index.js",
+    "start": "nod server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dohendra/AuthAndLocasn.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dohendra/AuthAndLocasn/issues"
+  },
+  "homepage": "https://github.com/dohendra/AuthAndLocasn#readme",
+  "dependencies": {
+    "express": "^4.18.3",
+    "nodemon": "^3.1.0"
+  }
+}
