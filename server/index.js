@@ -10,6 +10,17 @@ mongoose.connect(process.env.MONGO)
 const app= express();
 app.listen(3000,()=>{ console.log('server running on 3000!');
 });
+
+//middlewares
 app.use(express.json());
 app.use("/server/user",userRoutes);
 app.use("/server/auth",authRoutes);
+app.use((err, req, res, next) => {
+    const statusCode = err.statusCode || 500;
+    const message = err.message || 'Internal Server Error';
+    return res.status(statusCode).json({
+      success: false,
+      message,
+      statusCode,
+    });
+  });
