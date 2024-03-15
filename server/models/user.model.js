@@ -16,7 +16,16 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-   
+    phone: {
+      type: String,
+    },
+      zipCode: {
+      type: String,
+      required: true,
+    },
+    profilePic: {
+      type: String,
+    },  
   },
   { timestamps: true }
 );

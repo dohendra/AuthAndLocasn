@@ -65,6 +65,26 @@ const SignUp = () => {
           className='bg-slate-100 p-3 rounded-lg'
           onChange={handleChange}
         />
+        <input
+          type='text'
+          placeholder='Phone'
+          id='phone'
+          className='bg-slate-100 p-3 rounded-lg'
+          onChange={handleChange}
+        />
+        <input
+          type='text'
+          placeholder='Zip Code'
+          id='zipCode'
+          className='bg-slate-100 p-3 rounded-lg'
+          onChange={handleChange}
+        />
+        <input
+          type='file'
+          id='profilePic'
+          className='bg-slate-100 p-3 rounded-lg'
+          onChange={handleChange}
+        />
         <button
           disabled={loading}
           className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'
