@@ -3,6 +3,8 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import userRoutes from './routes/user.route.js';
 import authRoutes from './routes/auth.route.js';
+import cookieParser from 'cookie-parser';
+import authenticateToken from './middleware.js';
 dotenv.config();
 mongoose.connect(process.env.MONGO)
 .then(()=>{console.log('connected to MongoDB')})
@@ -12,8 +14,10 @@ app.listen(3000,()=>{ console.log('server running on 3000!');
 });
 
 //middlewares
+app.use(cookieParser());
 app.use(express.json());
-app.use("/server/user",userRoutes);
+app.use("/server/user", authenticateToken, userRoutes);
+// app.use("/server/user",userRoutes);
 app.use("/server/auth",authRoutes);
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
