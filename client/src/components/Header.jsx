@@ -19,9 +19,9 @@ export default function Header() {
           <Link to='/'>
             <li>Home</li>
           </Link>
-          <Link to='/about'>
+          {/* <Link to='/about'>
             <li>About</li>
-          </Link>
+          </Link> */}
           <Link to='/sign-in'>
             {currentUser ? (
             <li><button onClick={handleSignOut}>Sign Out</button></li>) : (

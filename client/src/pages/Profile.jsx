@@ -5,7 +5,7 @@ import {useSelector} from 'react-redux';
 const Profile = () => {
   const { currentUser } = useSelector((state) => state.user);
 
-  const { name, email, phone, zipCode, latitude,longitude, profilePic } = currentUser;
+  const { username, email, phone, zipCode, latitude,longitude, profilePic } = currentUser;
   console.log({currentUser});
 
   return (
@@ -18,31 +18,31 @@ const Profile = () => {
       </div>
       <div className="flex flex-col items-start gap-3">
         <div>
-          <label className="font-semibold">Name:</label>
-          <span>{name}</span>
+          <label className="font-semibold">Name:</label><br></br>
+          <span>{username}</span>
         </div>
         <div>
-          <label className="font-semibold">Email:</label>
+          <label className="font-semibold">Email:</label><br></br>
           <span>{email}</span>
         </div>
         <div>
-          <label className="font-semibold">Phone:</label>
+          <label className="font-semibold">Phone:</label><br></br>
           <span>{phone}</span>
         </div>
          <div>
-          <label className="font-semibold">Zip Code:</label>
+          <label className="font-semibold">Zip Code:</label><br></br>
           <span>{zipCode}</span>
         </div>
         <div>
-          <label className="font-semibold">Latitude:</label>
+          <label className="font-semibold">Latitude:</label><br></br>
           <span>{latitude}</span>
         </div>
         <div>
-          <label className="font-semibold">Longitude:</label>
+          <label className="font-semibold">Longitude:</label><br></br>
           <span>{longitude}</span>
         </div>
         <div>
-          <label className="font-semibold">Profile Picture:</label>
+          <label className="font-semibold">Profile Picture:</label><br></br>
           <img src={profilePic} alt="Profile" className="w-20 h-20 rounded-full" />
         </div>
       </div>
