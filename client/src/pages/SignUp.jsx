@@ -14,6 +14,16 @@ const SignUp = () => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
+  const handleGeoLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const { latitude, longitude } = position.coords;
+        setFormData({ ...formData, latitude, longitude });
+      });
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+  };
  // as soon as formData got updated , post method was sent to server
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,8 +38,7 @@ const SignUp = () => {
         body: JSON.stringify(formData),
       }); // respose of server is stored in res : look in the server/auth/signup
       const data = await res.json();
-      console.log(data);
-      setLoading(false);
+        setLoading(false);
       if (data.success === false) {
         setError(true);
         return;
@@ -85,6 +94,12 @@ const SignUp = () => {
           className='bg-slate-100 p-3 rounded-lg'
           onChange={handleChange}
         />
+        <button
+          onClick={handleGeoLocation}
+          className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95'
+        >
+          Get Location
+        </button>
         <button
           disabled={loading}
           className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'
