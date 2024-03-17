@@ -2,10 +2,13 @@
 // }
 import User from "../models/user.model.js";
 import { calculateDistance } from "../utils/distanceCalculator.js";
+import jwt from 'jsonwebtoken';
+import bcryptjs from 'bcryptjs';
+
 
 export const getNearestUsers = async (req, res, next) => {
     const currentUserId = req.user.id; 
-    console.log(req.user.id)// Assuming you have middleware to decode JWT and set req.user
+    
     try {
         const currentUser = await User.findById(currentUserId);
         if (!currentUser) {
@@ -27,3 +30,36 @@ export const getNearestUsers = async (req, res, next) => {
         next(error);
     }
 };
+
+export const updateProfile = async (req, res) => {
+    const currentUserId = req.user.id // Assuming you're getting the user's ID from JWT authentication
+    const { username,email,phone,zipCode,profilePic,latitude, longitude } = req.body;
+  
+    try {
+      const updatedUser = await User.findByIdAndUpdate(
+        currentUserId,
+        { username,email,phone,zipCode,profilePic,latitude, longitude},
+        { new: true } //  returns the document after update
+      );
+  
+      if (!updatedUser) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+  
+      res.json(updatedUser);
+    } catch (error) {
+      res.status(500).json({ message: 'Error updating user profile', error: error.message });
+    }
+  };
+  
+  // In server/routes/user.route.js
+//   import express from 'express';
+//   import { updateProfile } from '../controllers/user.controller.js';
+//   import authenticateToken from '../middleware/authenticateToken';
+  
+//   const router = express.Router();
+  
+//   router.put('/profile', authenticateToken, updateProfile);
+  
+//   export default router;
+  

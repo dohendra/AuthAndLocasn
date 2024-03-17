@@ -14,6 +14,18 @@ app.listen(3000,()=>{ console.log('server running on 3000!');
 });
 
 //middlewares
+// const multer = require('multer');
+// const upload = multer({ dest: 'uploads/' }); // Configure multer
+
+// app.post('/profile', upload.single('profilePic'), (req, res) => {
+//   // Here, 'profilePic' is the name of your file input field
+//   const file = req.file;
+  
+//   // Process the file, save the path or URL to your database, etc.
+  
+//   res.send('File uploaded successfully.');
+// });
+
 app.use(cookieParser());
 app.use(express.json());
 app.use("/server/user", authenticateToken, userRoutes);

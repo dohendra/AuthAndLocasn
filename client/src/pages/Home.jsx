@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 
 export default function Home() {
   return (
@@ -46,7 +46,7 @@ export default function Home() {
         <li className="mb-2">
           Find Nearest User Page:
           <ul className="list-disc list-inside">
-            <li>List 5 users (with name, profile picture, email, phone) nearest to the logged-in user's location.</li>
+            <li>List 5 users (with name, profile picture, email, phone) nearest to the logged-in user`&apos`s location.</li>
           </ul>
         </li>
       </ol>
