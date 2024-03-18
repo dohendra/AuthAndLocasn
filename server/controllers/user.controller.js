@@ -1,10 +1,8 @@
-// export const test = (req,res)=> {res.json({message:"API working",});
-// }
+
 import User from "../models/user.model.js";
 import { calculateDistance } from "../utils/distanceCalculator.js";
 import jwt from 'jsonwebtoken';
 import bcryptjs from 'bcryptjs';
-
 
 export const getNearestUsers = async (req, res, next) => {
     const currentUserId = req.user.id; 
@@ -41,25 +39,23 @@ export const updateProfile = async (req, res) => {
         { username,email,phone,zipCode,profilePic,latitude, longitude},
         { new: true } //  returns the document after update
       );
+      if (req.file) {
+        const filePath = req.file.path;
+        // Logic to find the user and update their profilePic field
+        const user = await User.findByIdAndUpdate(req.user.id, { profilePic: filePath }, { new: true });
+        res.json(user);
+      } else {
+        // Handle case where no file was uploaded
+        res.status(400).send('No file uploaded.');
+      }
   
       if (!updatedUser) {
         return res.status(404).json({ message: 'User not found' });
       }
-  
       res.json(updatedUser);
     } catch (error) {
       res.status(500).json({ message: 'Error updating user profile', error: error.message });
     }
   };
   
-  // In server/routes/user.route.js
-//   import express from 'express';
-//   import { updateProfile } from '../controllers/user.controller.js';
-//   import authenticateToken from '../middleware/authenticateToken';
-  
-//   const router = express.Router();
-  
-//   router.put('/profile', authenticateToken, updateProfile);
-  
-//   export default router;
-  
+   
