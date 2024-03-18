@@ -5,7 +5,6 @@ import userRoutes from './routes/user.route.js';
 import authRoutes from './routes/auth.route.js';
 import cookieParser from 'cookie-parser';
 import authenticateToken from './middleware.js';
-import path from 'path';
 dotenv.config();
 mongoose.connect(process.env.MONGO)
 .then(()=>{console.log('connected to MongoDB')})
@@ -26,11 +25,10 @@ app.listen(3000,()=>{ console.log('server running on 3000!');
   
 //   res.send('File uploaded successfully.');
 // });
-const __dirname = path.resolve();
-app.use (express.static(path.join(__dirname, '/client/dist')));
-app.get('*',(req,res) => { res.sendFile(path.join(__dirname, 'client','dist','index.html'))});
+
 app.use(cookieParser());
 app.use(express.json());
+
 app.use('/uploads', express.static('uploads'));
 app.use("/server/user", authenticateToken, userRoutes);
 // app.use("/server/user",userRoutes);
