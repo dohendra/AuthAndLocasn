@@ -6,6 +6,7 @@ import bcryptjs from 'bcryptjs';
 
 export const getNearestUsers = async (req, res, next) => {
     const currentUserId = req.user.id; 
+    console.log("getnearest user is running")
     
     try {
         const currentUser = await User.findById(currentUserId);
