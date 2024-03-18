@@ -26,14 +26,14 @@ app.listen(3000,()=>{ console.log('server running on 3000!');
   
 //   res.send('File uploaded successfully.');
 // });
-// const __dirname = path.resolve();
-// app.use (express.static(path.join(__dirname, '/client/dist')));
-// app.get('*',(req,res) => { res.sendFile(path.join(__dirname, 'client','dist','index.html'))});
+const __dirname = path.resolve();
+app.use (express.static(path.join(__dirname, '/client/dist')));
+app.get('*',(req,res) => { res.sendFile(path.join(__dirname, 'client','dist','index.html'))});
 app.use(cookieParser());
 app.use(express.json());
 app.use('/uploads', express.static('uploads'));
 app.use("/server/user", authenticateToken, userRoutes);
-app.use("/server/user",userRoutes);
+// app.use("/server/user",userRoutes);
 app.use("/server/auth",authRoutes);
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
