@@ -28,8 +28,6 @@ app.listen(3000,()=>{ console.log('server running on 3000!');
 
 app.use(cookieParser());
 app.use(express.json());
-
-app.use('/uploads', express.static('uploads'));
 app.use("/server/user", authenticateToken, userRoutes);
 // app.use("/server/user",userRoutes);
 app.use("/server/auth",authRoutes);

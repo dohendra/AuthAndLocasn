@@ -1,5 +1,6 @@
 import User from "../models/user.model.js";
 import bcryptjs from 'bcryptjs';
+import { errorHandler } from "../utils/error.js";
 import jwt from 'jsonwebtoken';
 
 export const signup = async(req,res,next)=>
@@ -13,15 +14,14 @@ export const signup = async(req,res,next)=>
     zipCode: zipCode,
     profilePic: profilePic,
     latitude, longitude});
-    
   try {
       await newUser.save();
       res.status(201).json({message:"user created successfully"});
     
   } catch (error) {
-      
+      // res.status(500).json(error.message); 
       next(error);
-        
+        // next(errorHandler(500."server error"))
 }
 };
 //sign up page completed
