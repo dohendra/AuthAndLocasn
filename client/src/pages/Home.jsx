@@ -4,12 +4,12 @@ export default function Home() {
   return (
     <div className='px-4 py-12 max-w-2xl mx-auto'>
       <h1 className='text-3xl font-bold mb-4 text-black-900'>
-        Welcome to my Dohendra's AuthAndLocasn!
+        Welcome to my AuthAndLocasn!
       </h1>
       <p className='mb-4 text-gray-800'>
         This is a full-stack web application built with the MERN (MongoDB,
         Express, React, Node.js) stack. It includes authentication features that
-        allow users to sign up, sign in, and sign out, and provides access to
+        allow users to sign up, log in, and log out, and provides access to
         protected routes only for authenticated users.
       </p>
       <p className='mb-4 text-gray-800'>
